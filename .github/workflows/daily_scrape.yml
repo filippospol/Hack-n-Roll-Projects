@@ -31,7 +31,10 @@ jobs:
         shell: Rscript {0}
 
       - name: Run scraper script
-        run: Rscript hnrdb_full.R
+        run: |
+          for i in 1 2 3; do
+            Rscript hnrdb_full.R && break || echo "NBA API failed. Retrying in 15 seconds..." && sleep 15
+          done
 
       - name: Commit and push new data
         run: |
