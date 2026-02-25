@@ -7,8 +7,8 @@ on:
 
 jobs:
   scrape-data:
-    # runs-on: ubuntu-22.04 
-    runs-on: macos-latest
+    runs-on: ubuntu-22.04 
+    # runs-on: macos-latest
     
     steps:
       - name: Checkout repository
@@ -19,15 +19,15 @@ jobs:
         with:
           r-version: 'release'
 
-      - name: Install system dependencies # run on macos-latest version
-        run: |
-          brew update
-          brew install curl openssl libxml2
-      
-      #- name: Install system dependencies
+      #- name: Install system dependencies # run on macos-latest version
       #  run: |
-      #    sudo apt-get update
-      #    sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+      #    brew update
+      #    brew install curl openssl libxml2
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
 
       - name: Install R packages
         run: |
